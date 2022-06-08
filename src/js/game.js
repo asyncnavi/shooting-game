@@ -12,7 +12,6 @@ const scoreEl = document.getElementById("score-el");
 
 const ctx = canvas.getContext("2d");
 const friction = 0.96;
-
 let highestScore = localStorage.getItem("highestScore");
 /* 
    creating different components classes because we need multiple instances of 
@@ -159,7 +158,7 @@ function animate() {
   });
   projectiles.forEach((projectile, index) => {
     projectile.update();
-   
+
     if (
       projectile.x - projectile.radius < 0 ||
       projectile.x - projectile.radius < canvas.width ||
@@ -178,6 +177,9 @@ function animate() {
     if (dist - enemy.radius - player.radius < 1) {
       cancelAnimationFrame(animnationId);
       localStorage.setItem("currentScore", score);
+      if (score > highestScore) {
+        localStorage.setItem("highestScore", `${score}`);
+      }
       window.location.href = "end.html";
     }
 
@@ -238,9 +240,6 @@ window.addEventListener("click", (e) => {
 
 let timer = document.getElementById("timer");
 
-if (score > highestScore) {
-  localStorage.setItem("highestScore", `${score}`);
-}
 function startGame() {
   animate();
   spawnEnemies();
