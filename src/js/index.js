@@ -63,7 +63,7 @@ function animate() {
 }
 
 let currentScore = localStorage.setItem("currentScore", "0");
-let highestScore = localStorage.getItem("highestScore") ;
+let highestScore = localStorage.getItem("highestScore") || 0;
 let highestScoreEl = document.getElementById("highest-score-el");
 let startGameBtn = document.getElementById("start-game-btn");
 highestScoreEl.innerHTML = highestScore;
